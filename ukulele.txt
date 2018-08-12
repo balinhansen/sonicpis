@@ -1,0 +1,83 @@
+# Welcome to Sonic Pi v3.0.1
+
+space=0.0625
+
+uke=[:g4,:c4,:e4,:a4];
+revuke=[:a4,:e4,:c4,:g4];
+
+altuke=[:a4, :d4, :f4, :b4 ];
+altrevuke=[:b4, :f4, :d4, :a4 ];
+
+alttoouke=[:b4, :e4, :g4, :c5];
+alttoorevuke=[:c5, :g4, :e4, :b4];
+
+define :ukulele do
+  counter = 0
+  play :g4
+  sleep space
+  play :c4
+  sleep space
+  play :e4
+  sleep space
+  play :a4
+end
+
+use_synth :pluck
+use_synth_defaults decay: 0, release: 0.0625/4, sustain: 0, attack: 0;
+ukulele
+sleep 2
+
+use_synth_defaults
+
+define :alohastrum do |somenotes, somerevnotes|
+  2.times do
+    play_pattern_timed somenotes, [0.0625/4]
+    sleep 0.25
+    
+    play_pattern_timed somerevnotes, [0.0625/4]
+    sleep 0.125
+    play_pattern_timed somenotes, [0.0625/4]
+    sleep 0.25
+    
+    play_pattern_timed somerevnotes, [0.0625/4]
+    sleep 0.125
+    play_pattern_timed somenotes, [0.0625/4]
+    sleep 0.25
+    play_pattern_timed somerevnotes, [0.0625/4]
+    
+    sleep 0.5
+  end
+end
+
+
+define :saahc do
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.5
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.25
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.25
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.5
+  play_pattern_timed uke, [0.0625/8]
+  sleep 1
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.5
+  play_pattern_timed uke, [0.0625/8]
+  sleep 0.5
+end
+
+play_pattern_timed uke, [0.25]
+
+sleep 1
+play_pattern_timed altuke, [0.25]
+
+sleep 1
+play_pattern_timed alttoouke, [0.25]
+
+sleep 2
+
+
+alohastrum uke, revuke
+alohastrum altuke, altrevuke
+alohastrum alttoouke, alttoorevuke
