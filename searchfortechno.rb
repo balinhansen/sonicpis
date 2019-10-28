@@ -1,3 +1,5 @@
+use_bpm 60
+
 define :setsaw do
   use_synth :saw
   use_synth_defaults attack: 0, release: 0.125, amp: 2
@@ -112,8 +114,8 @@ end
 
 in_thread do
   cue :onebeat
-  sleep 14
-  8.times do
+  sleep 9
+  10.times do
     beat_one
   end
 end
@@ -121,19 +123,16 @@ end
 
 in_thread do
   cue :twobeat
-  sleep 22
-  16.times do
+  sleep 24
+  10.times do
     beat_three
   end
   sleep 2
-  16.times do
+  20.times do
     beat_three
   end
   
 end
-
-
-
 
 intro
 
