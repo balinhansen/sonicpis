@@ -59,8 +59,6 @@ define :beattwo do
     end
 
 
-comment do
-
 hiss
 
 in_thread do
@@ -74,6 +72,5 @@ sleep rev
 sleep 0.25
 
 beatone
-end
 
 use_synth :piano
