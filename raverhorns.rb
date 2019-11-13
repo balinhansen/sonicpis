@@ -57,14 +57,75 @@ define :drumsone do
   end
 end
 
+define :drumstwo do
+  in_thread do
+    sample :drum_heavy_kick
+    sleep 0.5
+    sample :drum_heavy_kick
+    sleep 0.5
+    sample :drum_heavy_kick
+    sleep 0.5
+    sample :drum_heavy_kick
+    sleep 0.25
+    sample :drum_heavy_kick
+    sleep 0.25
+  end
+end
+
+
+
 in_thread do
-  120.times do
+  4.times do
+    drumsone
+    sleep 2
+  end
+end
+
+
+in_thread do
+  sleep 8
+  4.times do
+    drumstwo
+    sleep 2
+  end
+end
+
+in_thread do
+  sleep 24
+  4.times do
+    drumsone
+    sleep 2
+  end
+end
+
+
+in_thread do
+  sleep 40
+  8.times do
+    drumstwo
+    sleep 2
+  end
+end
+
+
+in_thread do
+  sleep 56
+  8.times do
     drumsone
     sleep 2
   end
 end
 
 in_thread do
+  sleep 80
+  80.times do
+    drumstwo
+    sleep 2
+  end
+end
+
+
+in_thread do
   2.times do
     sirenone
     sleep 8
@@ -215,5 +276,13 @@ in_thread do
     sirenthree
     sirenfour
     sleep 8
+  end
+end
+
+sleep 16
+
+in_thread do
+  2.times do
+    sirenone
   end
 end
