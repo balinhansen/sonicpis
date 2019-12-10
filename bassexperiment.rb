@@ -13,22 +13,16 @@ define :basshit do |n, t, r|
   
 end
 
-in_thread do
-  loop do
-    basshit :A0, 1, 2
-    sleep 2
-    basshit :B0, 1, 2
-    sleep 2
-    basshit :C1, 1, 2
-    sleep 2
-    basshit :D1, 1, 2
-    sleep 4
-  end
-end
-
-
-loop do
-  sleep 8
+  basshit :A0, 1, 2
+  sleep 2
+  basshit :B0, 1, 2
+  sleep 2
+  basshit :C1, 1, 2
+  sleep 2
+  basshit :D1, 1, 2
+  sleep 4
+  
+  
   basshit :G1 , 0.25, 0.125
   sleep 0.25
   basshit :B1 , 0.25, 0.125
@@ -41,4 +35,6 @@ loop do
   sleep 0.125
   basshit :F1, 0.125, 0.125
   sleep 0.125
-end
+  
+  sleep 1
+  
