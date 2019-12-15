@@ -44,7 +44,7 @@ in_thread do
             #sleep 0.25
             2.times do
               play_pattern_timed [:f3,:as3,:f3,:as3,:ds4],[0.125,0.125,0.125,0.125,0.25]
-              play_pattern_timed [:g3,:b3,:g3,:b3,:e4],[0.125,0.125,0.125,0.125,0.25]
+              play_pattern_timed [:fs3,:b3,:fs3,:b3,:e4],[0.125,0.125,0.125,0.125,0.25]
               play_pattern_timed [:f3,:as3,:ds4],[0.125,0.125,0.25]
             end
             #sleep 0.25
