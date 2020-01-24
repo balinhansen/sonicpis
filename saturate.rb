@@ -1,11 +1,14 @@
 use_bpm 66
 
 define :saturate do |n,d,c|
-  synth :sine, note: n+17, amp: 5, attack: c/2, sustain: d, release: c/2
-  synth :saw, note: n+12, amp: 1, attack: c/2, sustain: d, release: c/2
-  synth :tri, note: n+5, amp: 2.5, attack: c/2, sustain: d, release: c/2
-  synth :saw, note: n+12, amp: 1, attack: c/2, sustain: d, release: c/2
-  synth :cnoise, amp: 0.03, attack: c/4, sustain: d, release: c/2
+  with_fx :compressor do
+    synth :sine, note: n+24, amp: 5, attack: c/2, sustain: d, release: c/2
+    synth :tri, note: n+24, amp: 5, attack: c/2, sustain: d, release: c/2
+    synth :tri, note: n+12, amp: 5, attack: c/2, sustain: d, release: c/2
+    synth :sine, note: n+24, amp: 5, attack: c/2, sustain: d, release: c/2
+    synth :cnoise, amp: 0.03, attack: c/4, sustain: d, release: c/2
+  end
+  
 end
 
 
@@ -22,9 +25,10 @@ define :saturated do |n,d,c|
   
 end
 
+
 in_thread do
-  with_fx :reverb do
-    # with_fx :echo, phase: 0.0667, decay:0.4  do
+  #with_fx :reverb do
+  with_fx :echo, phase: 0.1, decay:0.4  do
     6.times do
       saturated :as1,0,0.25
       sleep 0.5
@@ -55,8 +59,8 @@ in_thread do
         sleep 0.5
       end
     end
-    #end
   end
+  #end
 end
 
 in_thread do
@@ -92,7 +96,7 @@ in_thread do
   4.times do
     with_fx :reverb do
       with_fx :distortion, distort: 0.5 do
-        use_synth :saw
+        use_synth :tri
         use_synth_defaults attack: 0, release: 0.125, sustain: 0.125,pitch: 12
         play_pattern_timed [:cs4, :cs4, :ds4, :ds4,:gs4,:gs4,:f4,:f4,:f4,:ds4],[0.375]
         play_pattern_timed [:cs4],[0.25]
@@ -112,7 +116,7 @@ in_thread do
       sleep 8*6
       in_thread do
         1.times do
-          use_synth :tri
+          use_synth :pulse
           use_synth_defaults amp: 0.25, attack: 0.0, release: 0.125, sustain: 0.125,pitch: 12
           play_pattern_timed [:cs1, :cs1, :ds1, :ds1,:gs1,:gs1,:f1,:f1,:f1,:ds1],[0.375]
           play_pattern_timed [:cs1],[0.25]
@@ -212,6 +216,8 @@ in_thread do
   end
 end
 
+
+
 in_thread do
   sleep 8*7
   sleep 8*3
@@ -228,6 +234,8 @@ in_thread do
     end
   end
 end
+
+
 
 in_thread do
   sleep 8*7
@@ -260,8 +268,8 @@ in_thread do
     end
     sleep 8
   end
-  
 end
+
 
 in_thread do
   sleep 8*7
@@ -293,12 +301,15 @@ in_thread do
   end
 end
 
+
 in_thread do
   sleep 8*7
   sleep 3*8
   2.times do
-    use_synth :sine
-    with_fx :reverb do
+    
+    use_synth :saw
+    #with_fx :vowel,
+    with_fx :echo, phase: 0.5 do
       use_synth_defaults attack: 0.125, sustain: 1.75, release: 0.125
       play :as3
       sleep 1.75
@@ -308,7 +319,7 @@ in_thread do
       use_synth_defaults attack: 0.125, sustain: 0.5, release: 0.125
       play :d4
       sleep 0.25
-      play :bs3
+      # play :bs3
       sleep 0.25
       play :d4
       sleep 0.5
@@ -320,7 +331,6 @@ in_thread do
     end
   end
 end
-
 
 in_thread do
   sleep 8*7
